@@ -28,6 +28,15 @@
       gap: .2rem;
       font-weight: 500;
     }
+
+    &.shotlist.first{
+      min-height: 6rem;
+      border-color: var(--accent-40);
+
+      span{
+        color: var(--accent-40);
+      }
+    }
   }
 
   &:hover{

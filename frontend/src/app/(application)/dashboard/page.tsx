@@ -127,7 +127,7 @@ export default function Overview() {
                 {shotlists.slice(0, 8).map((shotlist: ShotlistDto) => (
                     <DashboardGridShotlist shotlist={shotlist} key={shotlist.id}/>
                 ))}
-                <button className={"dashboardGridItem add shotlist"} onClick={() => {
+                <button className={`dashboardGridItem add shotlist ${shotlists.length == 0 && "first"}`} onClick={() => {
                     intro.cancel()
                     createShotlistDialog.open()
                 }}>
