@@ -38,7 +38,10 @@ export function useCreateShotlistDialog() {
     function open() {
         dialogElementRef.current?.open()
         setIsCreating(false)
-        appContext.reloadCurrentUser()
+        appContext.reloadCurrentUser().then(result => {
+            const firstId = result.data.currentUser?.templates?.at(0)?.id
+            setSelectedTemplateId(firstId ?? "null")
+        })
     }
 
     function close() {

@@ -21,7 +21,7 @@ export const AppContext = createContext<{
     page: string
     currentUser: UserDto | null
     currentUserReloading: boolean
-    reloadCurrentUser: () => void
+    reloadCurrentUser: () => Promise<ApolloQueryResult<Query>>
     setCurrentUser: Dispatch<SetStateAction<UserDto | null>>
     visibleOverlays: RefObject<Map<string, VisibleOverlay>>
     isKeybindBlocked: (keybind: string) => boolean,
@@ -32,7 +32,7 @@ export const AppContext = createContext<{
     page: "",
     currentUser: null,
     currentUserReloading: true,
-    reloadCurrentUser: () => {},
+    reloadCurrentUser: () => new Promise(() => {}),
     setCurrentUser: () => {},
     visibleOverlays: {current: new Map()},
     isKeybindBlocked: () => false,
@@ -127,11 +127,14 @@ export const AppContextProvider = ({
                 tryAgainLater: true,
             })
             setLoadError(true)
+            return result
         }
 
         setCurrentUser(result.data.currentUser ?? null)
         setReloading(false)
         setInitialLoadComplete(true)
+
+        return result
     }
 
     const isKeybindBlocked = (keybind: string) => {

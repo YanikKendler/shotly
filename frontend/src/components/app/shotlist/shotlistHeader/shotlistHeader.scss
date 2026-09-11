@@ -1,7 +1,6 @@
 main.shotlist .header{
   display: flex;
   align-items: center;
-  padding-left: 1.5rem;
   padding-right: calc(1.8rem + var(--sheet-additional-padding-right));
   overflow-x: auto;
   position: relative;
@@ -15,7 +14,7 @@ main.shotlist .header{
   }
 
   @media screen and (max-width: 600px){
-    padding-inline: 1.5rem .5rem;
+    padding-right: .5rem;
   }
 
   div{
@@ -25,13 +24,14 @@ main.shotlist .header{
     font-size: calc(.9rem * var(--shotlist-scale));
 
     &.number{
-      width: 4ch;
+      width: calc(4ch + 1.5rem);
       flex-shrink: 0;
       text-align: center;
       color: var(--text-40);
       position: sticky;
       left: 0;
       background-color: var(--sidebar-bg);
+      display: flex;
     }
 
     &.attribute{
